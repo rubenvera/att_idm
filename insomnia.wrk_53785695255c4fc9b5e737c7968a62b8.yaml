@@ -57,12 +57,12 @@ collection:
               sortKey: -1778783437250
               description: ""
             children:
-              - url: "{{testBaseUrl}}/usuarios"
+              - url: "{{ _.urlTest }}{{ _.pathIdm }}/usuarios"
                 name: Creación de usuario
                 meta:
                   id: req_3580cf3f1cd34a47a9d0218805808102
                   created: 1778783442713
-                  modified: 1778798746487
+                  modified: 1778799432755
                   isPrivate: false
                   description: ""
                   sortKey: -1778783437249
