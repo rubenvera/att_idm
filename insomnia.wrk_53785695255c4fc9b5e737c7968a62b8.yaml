@@ -1,0 +1,384 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: ATT - IdM User Management API
+meta:
+  id: wrk_53785695255c4fc9b5e737c7968a62b8
+  created: 1778780682293
+  modified: 1778780682293
+  description: ""
+collection:
+  - name: ATT - IdM User Management API
+    meta:
+      id: fld_a70fd09cac72477cb19f0b58d573df8a
+      created: 1778783442711
+      modified: 1778783442711
+      sortKey: -1778783437254
+      description: ""
+    children:
+      - name: TEST
+        meta:
+          id: fld_e63346e0d25d452a8ce8623ef6b5363f
+          created: 1778783442712
+          modified: 1778795450285
+          sortKey: -1778783437253
+          description: ""
+        children:
+          - name: Roles
+            meta:
+              id: fld_2f4988e2287c4db496ee7d7f7c11bf99
+              created: 1778783442712
+              modified: 1778783442712
+              sortKey: -1778783437252
+              description: ""
+            children:
+              - url: "{{ _.urlTest }}{{ _.pathIdm }}/roles"
+                name: Consulta del catálogo de roles
+                meta:
+                  id: req_3a09518cfb9f4a6da0dce6513cfda0e2
+                  created: 1778783442712
+                  modified: 1778795475513
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437251
+                method: GET
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Usuarios
+            meta:
+              id: fld_f5961c2ed0874877b72bd38eed1f1344
+              created: 1778783442713
+              modified: 1778783442713
+              sortKey: -1778783437250
+              description: ""
+            children:
+              - url: "{{testBaseUrl}}/usuarios"
+                name: Creación de usuario
+                meta:
+                  id: req_3580cf3f1cd34a47a9d0218805808102
+                  created: 1778783442713
+                  modified: 1778798746487
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437249
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"usuario": "jperez",
+                    	"apellido": "Pérez",
+                    	"nombre": "Juan",
+                    	"nombre_completo": "Juan Pérez",
+                    	"funcion": "Analista de Sistemas",
+                    	"departamento": "Departamento de TI",
+                    	"roles": [
+                    		"ZM_ATT_BC_GENUSERS""ROL_ADMIN"
+                    	]
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                scripts:
+                  afterResponse: |-
+                    insomnia.test("should be able to login", function () {
+                      const data = insomnia.response.json();
+                      insomnia.expect(insomnia.response.code).to.equal(200);
+                    });
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.urlTest }}{{ _.pathIdm }}/usuarios"
+                name: Consulta masiva de usuarios
+                meta:
+                  id: req_9b33833f008d484e90acb5795dbe0bb5
+                  created: 1778783442713
+                  modified: 1778796152549
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437248
+                method: GET
+                parameters:
+                  - name: estatus
+                    value: Activo
+                    disabled: false
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.urlTest }}{{ _.pathIdm }}/usuarios/tIUsr_0013"
+                name: Actualización de usuario
+                meta:
+                  id: req_66be7a34b2db408592840feaa92fc5e2
+                  created: 1778783442714
+                  modified: 1778796769276
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437247
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"estatus": "Activo",
+                    	"motivo_baja": "Activar",
+                    	"roles": [
+                    		"SAP_CLOUD_EMPLOYEE_ESS_PAYSLIP"
+                    	]
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{ _.urlTest }}{{ _.pathIdm }}/usuarios/tIUsr_0013"
+                name: Consulta de usuario
+                meta:
+                  id: req_55046614c54f4249a21f700e4cc1ee63
+                  created: 1778783442715
+                  modified: 1778795610677
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437246
+                method: GET
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+        authentication:
+          type: basic
+          useISO88591: false
+          username: S0023176958
+          password: JTapia2022-23
+          disabled: false
+      - name: PROD
+        meta:
+          id: fld_8ce8208413294ab6a5fe8ed235a93f07
+          created: 1778783442715
+          modified: 1778783442715
+          sortKey: -1778783437245
+          description: ""
+        children:
+          - name: Roles
+            meta:
+              id: fld_9b877d562315452f8640c15d85bbccd1
+              created: 1778783442715
+              modified: 1778783442715
+              sortKey: -1778783437244
+              description: ""
+            children:
+              - url: "{{baseUrl}}/roles"
+                name: Consulta del catálogo de roles
+                meta:
+                  id: req_916bed2a1bab4ff7810e7a9872f8d019
+                  created: 1778783442715
+                  modified: 1778783442715
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437243
+                method: GET
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Usuarios
+            meta:
+              id: fld_c616099c308348068c3262ae9eae8dbe
+              created: 1778783442715
+              modified: 1778783442715
+              sortKey: -1778783437242
+              description: ""
+            children:
+              - url: "{{baseUrl}}/usuarios/:usuario"
+                name: Actualización de usuario
+                meta:
+                  id: req_66cf585589b548c590860cbc8ed90127
+                  created: 1778783442716
+                  modified: 1778783442716
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437239
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                      "apellido": "",
+                      "nombre": "",
+                      "nombre_completo": "",
+                      "funcion": "",
+                      "departamento": "",
+                      "roles": [],
+                      "estatus": ""
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{baseUrl}}/usuarios"
+                name: Consulta masiva de usuarios
+                meta:
+                  id: req_ae1e2a17526246d8be6b5b44f0bd66cd
+                  created: 1778783442716
+                  modified: 1778783442716
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437240
+                method: GET
+                parameters:
+                  - name: estatus
+                    value: ""
+                    disabled: false
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{baseUrl}}/usuarios"
+                name: Creación de usuario
+                meta:
+                  id: req_c1f3bc88503945e5be6fe890371485e0
+                  created: 1778783442716
+                  modified: 1778783442716
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437241
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                      "usuario": "",
+                      "apellido": "",
+                      "nombre": "",
+                      "nombre_completo": "",
+                      "funcion": "",
+                      "departamento": "",
+                      "roles": []
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: "{{baseUrl}}/usuarios/:usuario"
+                name: Consulta de usuario
+                meta:
+                  id: req_cfbf05b3a1e94d4e8bff78f27f2a652e
+                  created: 1778783442716
+                  modified: 1778783442716
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1778783437238
+                method: GET
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_5de417ed376871d1e420a96b19b087a6cd5ed627
+    created: 1778780682354
+    modified: 1778796778516
+  cookies:
+    - id: ec4aef9f-9cd6-40d9-9259-b1fd0dfb2001
+      key: JSESSIONID
+      value: FAD61E9B530EA859A74A4275CE6D951DF8205551D72961A0D69CB8AF372D5875
+      domain: e65016-iflmap.hcisbt.us1.hana.ondemand.com
+      path: /http
+      secure: true
+      httpOnly: true
+      hostOnly: true
+    - id: 1ad2083c-8936-455b-b61b-2efbf8a39add
+      key: JTENANTSESSIONID_b13bc9aa2
+      value: tE59N3FbKe7lluxJeJQMYrN49dsYvZxyzr6Vf7nZjWU%3D
+      domain: hana.ondemand.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: false
+    - id: 78927873-a0f8-42bc-a0e2-76dbd060c8f6
+      key: sap-usercontext
+      value: sap-client=100
+      domain: e65016-iflmap.hcisbt.us1.hana.ondemand.com
+      path: /
+      secure: false
+      httpOnly: false
+      hostOnly: true
+    - id: 425b89e6-46dd-42ef-aaa7-fef1c3389e46
+      key: cookie_payroll
+      value: "!Vsyw2pwOFgYPzDSPEUAfEtGQF7p9dL+6DSxuD36Em4D7hL9xYmNFDmzUBImXVvv1ULErP4\
+        8JlrWbf9o="
+      domain: e65016-iflmap.hcisbt.us1.hana.ondemand.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+    - id: a7949f13-b143-4449-b154-ea684236ea01
+      key: BIGipServere65016iflmapavahcie.factoryus1.customdomain
+      value: "!QcpoCxbc5P8px2Az6r7cWMAbpnhcnbzxUlDGPjCcPzASfAdELa9+Sg5VZjpLZHIFrDs9oo\
+        EsAU1O2g=="
+      domain: e65016-iflmap.hcisbt.us1.hana.ondemand.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+environments:
+  name: Variables
+  meta:
+    id: env_e80c78b85f1d49f4836978c2ab7f9005
+    created: 1778780682303
+    modified: 1778783442707
+    isPrivate: false
+  data:
+    baseUrl: ""
+    testBaseUrl: ""
